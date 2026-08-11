@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="DevTrack productivity dashboard for managing tasks and tracking progress.">
+  <title>DevTrack — Productivity Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#">DevTrack</a>
+    <div class="top-actions">
+      <span id="todayLabel"></span>
+      <button id="themeBtn" class="icon-btn" aria-label="Toggle theme">☾</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">PERSONAL WORKSPACE</p>
+        <h1>Stay focused. Ship more.</h1>
+        <p class="subtitle">Organize your work, track progress, and keep your next move visible.</p>
+      </div>
+      <div class="progress-ring" id="progressRing" aria-label="Completion rate">
+        <span id="progressValue">0%</span>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Task statistics">
+      <article class="stat-card"><span>Total tasks</span><strong id="totalStat">0</strong></article>
+      <article class="stat-card"><span>Completed</span><strong id="doneStat">0</strong></article>
+      <article class="stat-card"><span>In progress</span><strong id="activeStat">0</strong></article>
+      <article class="stat-card"><span>High priority</span><strong id="highStat">0</strong></article>
+    </section>
+
+    <section class="workspace">
+      <div class="panel composer">
+        <div class="panel-head">
+          <div><p class="eyebrow">NEW TASK</p><h2>Create a task</h2></div>
+        </div>
+        <form id="taskForm">
+          <label>Task title<input id="titleInput" type="text" placeholder="e.g. Build authentication flow" maxlength="80" required></label>
+          <label>Description<textarea id="descriptionInput" placeholder="Add a short note..." maxlength="180"></textarea></label>
+          <div class="form-grid">
+            <label>Priority<select id="priorityInput"><option value="low">Low</option><option value="medium" selected>Medium</option><option value="high">High</option></select></label>
+            <label>Due date<input id="dueInput" type="date"></label>
+          </div>
+          <button class="primary-btn" type="submit">+ Add task</button>
+        </form>
+      </div>
+
+      <div class="panel tasks-panel">
+        <div class="panel-head task-header">
+          <div><p class="eyebrow">WORK QUEUE</p><h2>Your tasks</h2></div>
+          <span id="taskCount" class="count-badge">0</span>
+        </div>
+        <div class="toolbar">
+          <input id="searchInput" type="search" placeholder="Search tasks..." aria-label="Search tasks">
+          <select id="filterInput" aria-label="Filter tasks"><option value="all">All</option><option value="active">Active</option><option value="completed">Completed</option><option value="high">High priority</option></select>
+        </div>
+        <div id="taskList" class="task-list"></div>
+        <div id="emptyState" class="empty-state">
+          <div class="empty-icon">✓</div>
+          <h3>Nothing here yet</h3>
+          <p>Add your first task and start making progress.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <template id="taskTemplate">
+    <article class="task-item">
+      <button class="check-btn" aria-label="Mark task complete"></button>
+      <div class="task-content">
+        <div class="task-title-row"><h3 class="task-title"></h3><span class="priority"></span></div>
+        <p class="task-description"></p>
+        <div class="task-meta"><span class="due"></span><span class="task-created"></span></div>
+      </div>
+      <div class="task-actions"><button class="edit-btn" aria-label="Edit task">Edit</button><button class="delete-btn" aria-label="Delete task">Delete</button></div>
+    </article>
+  </template>
+  <script src="script.js"></script>
+</body>
+</html>
